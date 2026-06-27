@@ -1,0 +1,84 @@
+import { useEffect, useMemo, useState } from "react";
+import AppHeader from "../components/AppHeader";
+import AudioButton from "../components/AudioButton";
+import BigButton from "../components/BigButton";
+import CardPractice from "../components/CardPractice";
+import ToneSelector from "../components/ToneSelector";
+import { initials } from "../data/initials";
+import { syllableBases, syllables } from "../data/syllables";
+import type { SyllableBase, Tone } from "../types/pinyin";
+import { buildPlainPinyin } from "../utils/tone";
+
+export default function SpellPage() {
+  const [initial, setInitial] = useState("b");
+  const [index, setIndex] = useState(0);
+  const [tone, setTone] = useState<Tone>(1);
+  const bases = useMemo(() => syllableBases.filter((item) => item.initial === initial), [initial]);
+
+  useEffect(() => {
+    setIndex(0);
+  }, [initial]);
+
+  function findSyllable(base: SyllableBase) {
+    return syllables.find((item) => item.id === `${base.id}${tone}`);
+  }
+
+  return (
+    <>
+      <AppHeader title="拼读练习" />
+      <section className="mb-4">
+        <h2 className="mb-3 text-xl font-bold">选择声母</h2>
+        <div className="grid grid-cols-5 gap-2">
+          {initials.map((item) => {
+            const disabled = !syllableBases.some((base) => base.initial === item);
+            return (
+              <button
+                className={`min-h-12 rounded-lg px-2 text-lg font-bold shadow-sm ${
+                  item === initial ? "bg-orange-500 text-white" : "bg-white text-stone-700"
+                } ${disabled ? "opacity-40" : ""}`}
+                disabled={disabled}
+                key={item}
+                onClick={() => setInitial(item)}
+                type="button"
+              >
+                {item}
+              </button>
+            );
+          })}
+        </div>
+      </section>
+      <CardPractice
+        getKey={(item) => item.id}
+        getLabel={(item) => buildPlainPinyin(item.initial, item.final)}
+        index={index}
+        items={bases}
+        onIndexChange={setIndex}
+        renderCard={(base) => {
+          const syllable = findSyllable(base);
+          return (
+            <section className="rounded-lg bg-white p-5 text-center shadow-sm">
+              <p className="text-lg font-bold text-orange-700">{buildPlainPinyin(base.initial, base.final)}</p>
+              {syllable ? (
+                <>
+                  <div className="my-4 text-[90px] font-bold leading-none text-orange-600">{syllable.pinyin}</div>
+                  {syllable.word && <div className="mb-4 text-5xl font-bold">{syllable.word}</div>}
+                  {!syllable.word && <p className="mb-4 text-lg text-stone-500">先读准拼音</p>}
+                  <AudioButton label="听拼读" src={syllable.audio} />
+                </>
+              ) : (
+                <p className="py-8 text-2xl font-bold text-stone-600">这个组合我们后面再学</p>
+              )}
+            </section>
+          );
+        }}
+      />
+      <section className="mt-5">
+        <h2 className="mb-3 text-xl font-bold">选择声调</h2>
+        <ToneSelector onChange={setTone} value={tone} />
+      </section>
+      <div className="mt-4">
+        <BigButton onClick={() => setInitial("b")}>回到 b 开始</BigButton>
+      </div>
+    </>
+  );
+}

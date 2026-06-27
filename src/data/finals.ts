@@ -1,0 +1,28 @@
+import type { FinalItem } from "../types/pinyin";
+
+export const finals: FinalItem[] = [
+  { id: "a", symbol: "a", name: "单韵母 a", group: "single", audioPrefix: "a" },
+  { id: "o", symbol: "o", name: "单韵母 o", group: "single", audioPrefix: "o" },
+  { id: "e", symbol: "e", name: "单韵母 e", group: "single", audioPrefix: "e" },
+  { id: "i", symbol: "i", name: "单韵母 i", group: "single", audioPrefix: "i" },
+  { id: "u", symbol: "u", name: "单韵母 u", group: "single", audioPrefix: "u" },
+  { id: "v", symbol: "ü", name: "单韵母 ü", group: "single", audioPrefix: "v" },
+  { id: "ai", symbol: "ai", name: "复韵母 ai", group: "compound", audioPrefix: "ai" },
+  { id: "ei", symbol: "ei", name: "复韵母 ei", group: "compound", audioPrefix: "ei" },
+  { id: "ui", symbol: "ui", name: "复韵母 ui", group: "compound", audioPrefix: "ui" },
+  { id: "ao", symbol: "ao", name: "复韵母 ao", group: "compound", audioPrefix: "ao" },
+  { id: "ou", symbol: "ou", name: "复韵母 ou", group: "compound", audioPrefix: "ou" },
+  { id: "iu", symbol: "iu", name: "复韵母 iu", group: "compound", audioPrefix: "iu" },
+  { id: "ie", symbol: "ie", name: "复韵母 ie", group: "compound", audioPrefix: "ie" },
+  { id: "ve", symbol: "üe", name: "复韵母 üe", group: "compound", audioPrefix: "ve" },
+  { id: "er", symbol: "er", name: "特殊韵母 er", group: "special", audioPrefix: "er" },
+  { id: "an", symbol: "an", name: "前鼻韵母 an", group: "nasal", audioPrefix: "an" },
+  { id: "en", symbol: "en", name: "前鼻韵母 en", group: "nasal", audioPrefix: "en" },
+  { id: "in", symbol: "in", name: "前鼻韵母 in", group: "nasal", audioPrefix: "in" },
+  { id: "un", symbol: "un", name: "前鼻韵母 un", group: "nasal", audioPrefix: "un" },
+  { id: "vn", symbol: "ün", name: "前鼻韵母 ün", group: "nasal", audioPrefix: "vn" },
+  { id: "ang", symbol: "ang", name: "后鼻韵母 ang", group: "nasal", audioPrefix: "ang" },
+  { id: "eng", symbol: "eng", name: "后鼻韵母 eng", group: "nasal", audioPrefix: "eng" },
+  { id: "ing", symbol: "ing", name: "后鼻韵母 ing", group: "nasal", audioPrefix: "ing" },
+  { id: "ong", symbol: "ong", name: "后鼻韵母 ong", group: "nasal", audioPrefix: "ong" },
+];

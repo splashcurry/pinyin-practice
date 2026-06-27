@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>拼音练习小屋</title>
+  </head>
+  <body>
+    <script>
+      sessionStorage.setItem("redirectPath", location.pathname + location.search + location.hash);
+      location.replace("/pinyin-practice/");
+    </script>
+  </body>
+</html>

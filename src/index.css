@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: "Microsoft YaHei", "PingFang SC", system-ui, sans-serif;
+  color: #292524;
+  background: #fffbeb;
+}
+
+button {
+  -webkit-tap-highlight-color: transparent;
+}
