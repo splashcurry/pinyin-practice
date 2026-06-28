@@ -9,27 +9,27 @@ export default function PinyinCard({ item }: { item: PinyinItem }) {
 
   return (
     <article
-      className="cursor-pointer rounded-lg bg-white p-5 text-center shadow-sm"
+      className="practice-card cursor-pointer p-6 text-center"
       onClick={() => playAudio(item.audio)}
     >
-      <p className="text-base font-bold text-orange-700">{item.name}</p>
-      <div className="mt-2 text-[86px] font-bold leading-none text-orange-600">{item.symbol}</div>
-      <p className="mt-3 text-2xl font-bold">{item.keyword}</p>
-      <p className="mt-1 text-lg text-stone-600">{item.rhyme}</p>
+      <p className="eyebrow-pill text-base">{item.name}</p>
+      <div className="pinyin-display mt-4 text-[92px]">{item.symbol}</div>
+      <p className="mt-4 text-2xl font-black text-slate-900">{item.keyword}</p>
+      <p className="mt-1 text-lg font-semibold text-slate-500">{item.rhyme}</p>
       {!imageFailed && (
         <img
           alt={item.keyword}
-          className="mx-auto mt-4 h-28 w-28 rounded-lg object-contain"
+          className="mx-auto mt-5 h-28 w-28 rounded-3xl object-contain"
           onError={() => setImageFailed(true)}
           src={assetPath(item.image)}
         />
       )}
       {imageFailed && (
-        <div className="mx-auto mt-4 flex h-28 w-28 items-center justify-center rounded-lg bg-amber-100 text-stone-500">
+        <div className="mx-auto mt-5 flex h-28 w-28 items-center justify-center rounded-3xl bg-gradient-to-br from-orange-100 to-teal-50 text-sm font-bold text-slate-500">
           图片待补充
         </div>
       )}
-      <div className="mt-4">
+      <div className="mt-5">
         <AudioButton src={item.audio} />
       </div>
     </article>

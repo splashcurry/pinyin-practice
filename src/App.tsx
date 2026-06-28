@@ -8,8 +8,8 @@ import TonePage from "./pages/TonePage";
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-amber-50 text-stone-800">
-      <main className="mx-auto min-h-screen w-full max-w-[480px] px-4 py-4">
+    <div className="app-bg">
+      <main className="app-frame">
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/single" element={<SinglePage />} />

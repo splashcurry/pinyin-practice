@@ -9,7 +9,7 @@ export default function AudioButton({ src, label = "听一听" }: { src: string;
 
   return (
     <button
-      className="min-h-14 rounded-lg bg-emerald-500 px-5 py-3 text-xl font-bold text-white shadow-sm active:scale-[0.99]"
+      className="audio-button px-6 py-3 text-xl font-black transition active:scale-[0.98]"
       onClick={handleClick}
       type="button"
     >

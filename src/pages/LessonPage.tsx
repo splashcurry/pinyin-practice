@@ -26,7 +26,7 @@ export default function LessonPage() {
     return (
       <>
         <AppHeader title="课程练习" />
-        <p className="rounded-lg bg-white p-6 text-center text-xl font-bold">没有找到这节课</p>
+        <p className="surface-card p-6 text-center text-xl font-black text-slate-600">没有找到这节课</p>
       </>
     );
   }
@@ -40,12 +40,13 @@ export default function LessonPage() {
   return (
     <>
       <AppHeader title="课程练习" />
-      <section className="rounded-lg bg-white p-5 shadow-sm">
-        <h2 className="text-2xl font-bold text-orange-700">{lesson.title}</h2>
-        <p className="mt-2 text-lg text-stone-600">{lesson.description}</p>
+      <section className="surface-card p-5">
+        <div className="eyebrow-pill">第 {lesson.id} 课</div>
+        <h2 className="mt-3 text-2xl font-black leading-tight text-slate-950">{lesson.title}</h2>
+        <p className="mt-2 text-base font-semibold leading-7 text-slate-500">{lesson.description}</p>
       </section>
       <section className="mt-5">
-        <h2 className="mb-3 text-xl font-bold">先听一听</h2>
+        <h2 className="mb-3 text-xl font-black text-slate-950">先听一听</h2>
         <CardPractice
           getKey={(item) => item.id}
           getLabel={(item) => item.symbol}
@@ -56,38 +57,38 @@ export default function LessonPage() {
         />
       </section>
       <section className="mt-5">
-        <h2 className="mb-3 text-xl font-bold">拼一拼</h2>
+        <h2 className="mb-3 text-xl font-black text-slate-950">拼一拼</h2>
         {lessonSyllables.length > 0 ? (
           <div className="grid gap-3">
             {lessonSyllables.map((item) => (
-              <div className="flex items-center justify-between gap-3 rounded-lg bg-white p-4 shadow-sm" key={item.id}>
+              <div className="surface-card flex items-center justify-between gap-3 p-4" key={item.id}>
                 <div>
-                  <span className="text-4xl font-bold text-orange-600">{item.pinyin}</span>
-                  {item.word && <span className="ml-3 text-3xl font-bold">{item.word}</span>}
+                  <span className="text-4xl font-black text-orange-600">{item.pinyin}</span>
+                  {item.word && <span className="ml-3 text-3xl font-black text-slate-950">{item.word}</span>}
                 </div>
                 <AudioButton label="听" src={item.audio} />
               </div>
             ))}
           </div>
         ) : (
-          <p className="rounded-lg bg-white p-4 text-center text-lg">本课主要练习认读</p>
+          <p className="surface-card p-4 text-center text-lg font-bold text-slate-500">本课主要练习认读</p>
         )}
       </section>
-      <section className="mt-5 rounded-lg bg-white p-5 text-center shadow-sm">
-        <h2 className="mb-3 text-xl font-bold">随机练一练</h2>
+      <section className="surface-card mt-5 p-5 text-center">
+        <h2 className="mb-3 text-xl font-black text-slate-950">随机练一练</h2>
         {lessonSyllables.length > 0 ? (
           <>
             {randomItem && (
               <div className="mb-4">
-                <div className="text-[76px] font-bold leading-none text-orange-600">{randomItem.pinyin}</div>
-                {randomItem.word && <div className="text-5xl font-bold">{randomItem.word}</div>}
+                <div className="pinyin-display text-[78px]">{randomItem.pinyin}</div>
+                {randomItem.word && <div className="text-5xl font-black text-slate-950">{randomItem.word}</div>}
                 <div className="mt-3"><AudioButton src={randomItem.audio} /></div>
               </div>
             )}
             <BigButton onClick={nextRandom}>{randomItem ? "下一个" : "开始"}</BigButton>
           </>
         ) : (
-          <p className="text-lg text-stone-600">本课还没有拼读随机练习。</p>
+          <p className="text-lg font-bold text-slate-500">本课还没有拼读随机练习。</p>
         )}
       </section>
     </>

@@ -29,7 +29,7 @@ export default function SinglePage() {
       <div className="mb-4 grid grid-cols-3 gap-2">
         {filters.map((item) => (
           <BigButton
-            className="text-lg"
+            className="px-2 text-base"
             key={item.value}
             onClick={() => setFilter(item.value)}
             selected={filter === item.value}

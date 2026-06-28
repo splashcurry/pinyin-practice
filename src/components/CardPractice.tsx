@@ -21,7 +21,7 @@ export default function CardPractice<T>({
   const current = items[index];
 
   if (!current) {
-    return <p className="rounded-lg bg-white p-5 text-center text-lg shadow-sm">这里暂时没有内容。</p>;
+    return <p className="surface-card p-5 text-center text-lg font-bold text-slate-600">这里暂时没有内容。</p>;
   }
 
   function go(delta: number) {
@@ -38,8 +38,8 @@ export default function CardPractice<T>({
       <div className="mt-4 grid grid-cols-5 gap-2">
         {items.map((item, itemIndex) => (
           <button
-            className={`min-h-11 rounded-lg px-2 text-base font-bold shadow-sm ${
-              itemIndex === index ? "bg-orange-500 text-white" : "bg-white text-stone-700"
+            className={`px-1 text-[15px] font-black transition active:scale-[0.98] ${
+              itemIndex === index ? "choice-pill-selected" : "choice-pill"
             }`}
             key={getKey(item)}
             onClick={() => onIndexChange(itemIndex)}

@@ -12,7 +12,7 @@ export default function ToneSelector({ value, onChange }: { value: Tone; onChang
   return (
     <div className="grid grid-cols-2 gap-3">
       {tones.map((tone) => (
-        <BigButton key={tone.value} onClick={() => onChange(tone.value)} selected={value === tone.value}>
+        <BigButton className="text-lg" key={tone.value} onClick={() => onChange(tone.value)} selected={value === tone.value}>
           {tone.label}
         </BigButton>
       ))}
