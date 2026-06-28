@@ -1,6 +1,17 @@
-# 拼音练习小屋
+# Pinyin Practice
 
-面向幼小衔接和一年级学生的拼音课后复习网站。项目是纯静态网站，适合部署到 GitHub Pages。
+Pinyin Practice is an open-source web app for after-class Pinyin review. It is designed for young Chinese learners, especially kindergarten-to-grade-one students, and can be deployed as a static site on GitHub Pages.
+
+The app focuses on simple card-based practice without accounts, backend services, ads, analytics, or student data collection.
+
+## Features
+
+- Initials, finals, and whole-syllable recognition
+- Tone practice for finals
+- Initial-final spelling practice
+- Lesson-based review pages
+- Random practice mode
+- Audio and image asset conventions for adding new content
 
 ## 技术栈
 
@@ -15,6 +26,18 @@
 ```bash
 npm install
 npm run dev
+npm run build
+```
+
+本地开发默认使用：
+
+```bash
+npm run dev
+```
+
+构建静态文件：
+
+```bash
 npm run build
 ```
 
@@ -100,3 +123,7 @@ ma3: "马"
 ## 第一版不包含
 
 登录、注册、数据库、后端、教师后台、学生管理、家长管理、儿童信息收集、排行榜、支付、广告、第三方统计、语音识别、AI 纠音、录音上传、复杂游戏。
+
+## License
+
+This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
