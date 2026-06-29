@@ -120,6 +120,7 @@ button {
 
   .choice-pill-selected {
     border-color: transparent;
+    border-radius: 16px;
     background: linear-gradient(135deg, #ff6b35, #f97316);
     color: white;
     box-shadow: 0 12px 24px rgba(249, 115, 22, 0.24);

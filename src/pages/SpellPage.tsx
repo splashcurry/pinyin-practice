@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import AppHeader from "../components/AppHeader";
 import AudioButton from "../components/AudioButton";
-import BigButton from "../components/BigButton";
 import CardPractice from "../components/CardPractice";
 import ToneSelector from "../components/ToneSelector";
 import { initials } from "../data/initials";
@@ -76,9 +75,6 @@ export default function SpellPage() {
         <h2 className="mb-3 text-xl font-black text-slate-950">选择声调</h2>
         <ToneSelector onChange={setTone} value={tone} />
       </section>
-      <div className="mt-4">
-        <BigButton onClick={() => setInitial("b")}>回到 b 开始</BigButton>
-      </div>
     </>
   );
 }
