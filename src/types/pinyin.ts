@@ -43,3 +43,19 @@ export interface Lesson {
   finals: string[];
   syllables: string[];
 }
+
+export type AssignmentItemType = "single_vowel" | "initial" | "syllable" | "whole" | "custom";
+
+export interface AssignmentItem {
+  type: AssignmentItemType;
+  label: string;
+  content: string[];
+}
+
+export interface DailyAssignment {
+  date: string;
+  title: string;
+  description: string;
+  estimatedMinutes: number;
+  items: AssignmentItem[];
+}

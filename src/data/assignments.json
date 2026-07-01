@@ -1,0 +1,59 @@
+[
+  {
+    "date": "2026-07-01",
+    "title": "单韵母 a o e 练习",
+    "description": "先听读音，再跟读三遍，注意口型。",
+    "estimatedMinutes": 5,
+    "items": [
+      {
+        "type": "single_vowel",
+        "label": "单韵母",
+        "content": ["a", "o", "e"]
+      }
+    ]
+  },
+  {
+    "date": "2026-06-30",
+    "title": "单韵母 i u ü 练习",
+    "description": "复习 i、u、ü 的发音和口型。",
+    "estimatedMinutes": 5,
+    "items": [
+      {
+        "type": "single_vowel",
+        "label": "单韵母",
+        "content": ["i", "u", "ü"]
+      }
+    ]
+  },
+  {
+    "date": "2026-06-29",
+    "title": "b p m f 和 a 的拼读",
+    "description": "练习 ba、pa、ma、fa 的四声。",
+    "estimatedMinutes": 8,
+    "items": [
+      {
+        "type": "syllable",
+        "label": "拼读",
+        "content": ["ba", "pa", "ma", "fa"]
+      }
+    ]
+  },
+  {
+    "date": "2026-06-28",
+    "title": "复习 b p m f",
+    "description": "把 b、p、m、f 读清楚，再和 a 拼一拼。",
+    "estimatedMinutes": 6,
+    "items": [
+      {
+        "type": "initial",
+        "label": "声母",
+        "content": ["b", "p", "m", "f"]
+      },
+      {
+        "type": "syllable",
+        "label": "拼读",
+        "content": ["ba", "pa", "ma", "fa"]
+      }
+    ]
+  }
+]
