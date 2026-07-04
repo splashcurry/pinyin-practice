@@ -3,6 +3,51 @@ import { buildPinyin } from "../utils/tone";
 
 const tones: Tone[] = [1, 2, 3, 4];
 
+const missingAudioIds = new Set([
+  "biao1",
+  "mou3",
+  "dia1",
+  "dia2",
+  "dia3",
+  "dia4",
+  "diao1",
+  "niang1",
+  "nuo1",
+  "nv1",
+  "nv2",
+  "nv3",
+  "nv4",
+  "nve1",
+  "nve2",
+  "nve3",
+  "nve4",
+  "lin1",
+  "lun1",
+  "lv1",
+  "lv2",
+  "lv3",
+  "lv4",
+  "lve1",
+  "lve2",
+  "lve3",
+  "lve4",
+  "kang3",
+  "jing2",
+  "xiang2",
+  "xin3",
+  "xiu1",
+  "zhai4",
+  "zhan1",
+  "rui1",
+  "zai2",
+  "cuo2",
+  "sang3",
+  "yo1",
+  "yo2",
+  "yo3",
+  "yo4",
+]);
+
 // 拼读练习使用合法基础音节表，不受 24 个韵母复习表限制。
 // v 表示 ü，用于文件名和 id，例如 xve => xue。
 const basesByInitial: Record<string, string[]> = {
@@ -84,5 +129,5 @@ export const syllables: SyllableItem[] = syllableBases.flatMap((base) =>
       word: exampleWords[id],
       audio: `/audio/spell/${id}.mp3`,
     };
-  }),
+  }).filter((item) => !missingAudioIds.has(item.id)),
 );
