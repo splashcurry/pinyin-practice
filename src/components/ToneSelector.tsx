@@ -10,7 +10,7 @@ const tones: { value: Tone; label: string }[] = [
 
 export default function ToneSelector({ value, onChange }: { value: Tone; onChange: (tone: Tone) => void }) {
   return (
-    <div className="grid grid-cols-2 gap-3">
+    <div className="tone-selector grid grid-cols-2 gap-3">
       {tones.map((tone) => (
         <BigButton className="text-lg" key={tone.value} onClick={() => onChange(tone.value)} selected={value === tone.value}>
           {tone.label}

@@ -34,7 +34,7 @@ function PracticeEntryCard({ entry }: { entry: DailyPracticeEntry }) {
 
   if (entry.kind === "syllable") {
     return (
-      <article className="practice-card p-6 text-center">
+      <article className="practice-card compact-practice-card p-6 text-center">
         <p className="eyebrow-pill text-base">拼读</p>
         <div className="pinyin-display my-6 text-[88px]">{entry.item.pinyin}</div>
         {entry.item.word && <div className="mb-5 text-5xl font-black text-slate-950">{entry.item.word}</div>}
@@ -45,7 +45,7 @@ function PracticeEntryCard({ entry }: { entry: DailyPracticeEntry }) {
   }
 
   return (
-    <article className="practice-card p-6 text-center">
+    <article className="practice-card compact-practice-card p-6 text-center">
       <p className="eyebrow-pill text-base">{entry.label}</p>
       <div className="pinyin-display my-8 text-[78px]">{entry.value}</div>
       <p className="text-lg font-bold text-slate-500">跟着老师的要求读一读。</p>

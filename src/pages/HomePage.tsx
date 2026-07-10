@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import AppHeader from "../components/AppHeader";
-import { findAssignment, formatShortDate, recentDateTabs } from "../data/dailyAssignments";
+import { dailyAssignments, findAssignment, formatShortDate, recentDateTabs } from "../data/dailyAssignments";
 
 const modules = [
   { title: "单个拼音", desc: "声母 韵母 整体认读", path: "/single", tone: "from-orange-100 to-white", mark: "01" },
@@ -16,66 +16,50 @@ export default function HomePage() {
   const [selectedDate, setSelectedDate] = useState(tabs[0].date);
   const selectedTab = tabs.find((item) => item.date === selectedDate) ?? tabs[0];
   const assignment = findAssignment(selectedDate);
+  const fallbackAssignment = selectedDate === tabs[0].date ? dailyAssignments[0] : undefined;
+  const displayedAssignment = assignment ?? fallbackAssignment;
+  const isFallback = !assignment && Boolean(fallbackAssignment);
 
   return (
     <>
       <AppHeader />
-      <section className="surface-card overflow-hidden p-5">
-        <div className="eyebrow-pill">今日复习</div>
-        <h2 className="mt-4 text-3xl font-black leading-tight text-slate-950">读一读，拼一拼，今天也稳稳进步。</h2>
-        <p className="mt-3 text-base font-semibold leading-7 text-slate-500">
-          声母、韵母、整体认读和拼读练习都在这里。家长打开页面，孩子直接点卡片练习。
-        </p>
-      </section>
+      <div className="home-layout">
+        <section className="daily-task-card p-5 sm:p-6">
+          <div className="flex items-start justify-between gap-3">
+            <div>
+              <div className="eyebrow-pill">{isFallback ? "上次练习" : `${selectedTab.label}的练习`}</div>
+              <h2 className="mt-4 text-3xl font-black leading-tight text-slate-950">今天先完成这一小步。</h2>
+              <p className="mt-2 text-base font-semibold leading-7 text-slate-600">读一读，拼一拼，几分钟就能完成。</p>
+            </div>
+            <Link className="shrink-0 text-sm font-bold text-orange-700" to="/daily-history">
+              往期内容 &gt;
+            </Link>
+          </div>
 
-      <section className="mt-4 grid grid-cols-2 gap-3">
-        {modules.map((item) => (
-          <button
-            className={`module-card bg-gradient-to-br ${item.tone} transition active:scale-[0.98]`}
-            key={item.path}
-            onClick={() => navigate(item.path)}
-            type="button"
-          >
-            <span className="text-sm font-black text-orange-600">{item.mark}</span>
-            <span className="mt-3 block text-xl font-black text-slate-950">{item.title}</span>
-            <span className="mt-2 block text-sm font-bold leading-5 text-slate-500">{item.desc}</span>
-          </button>
-        ))}
-      </section>
+          <div className="my-5 grid grid-cols-3 gap-2" aria-label="选择练习日期">
+            {tabs.map((item) => (
+              <button
+                aria-pressed={item.date === selectedDate}
+                className={`min-h-16 rounded-2xl px-2 py-3 text-left transition active:scale-[0.98] ${
+                  item.date === selectedDate
+                    ? "bg-orange-100 text-slate-950"
+                    : "border border-slate-200/80 bg-white/70 text-slate-600"
+                }`}
+                key={item.date}
+                onClick={() => setSelectedDate(item.date)}
+                type="button"
+              >
+                <span className="block text-base font-black">{item.label}</span>
+                <span className="mt-1 block text-sm font-bold">{formatShortDate(item.date)}</span>
+              </button>
+            ))}
+          </div>
 
-      <section className="mt-6">
-        <div className="mb-3 flex items-end justify-between gap-3">
-          <h2 className="text-2xl font-black text-slate-950">每日练习</h2>
-          <Link className="shrink-0 text-sm font-bold text-orange-600" to="/daily-history">
-            查看往期内容 &gt;
-          </Link>
-        </div>
-
-        <div className="mb-3 grid grid-cols-3 gap-2">
-          {tabs.map((item) => (
-            <button
-              className={`min-h-16 rounded-2xl px-2 py-3 text-left transition active:scale-[0.98] ${
-                item.date === selectedDate
-                  ? "bg-orange-100 text-slate-950 shadow-md shadow-orange-100"
-                  : "border border-white/80 bg-white/80 text-slate-500"
-              }`}
-              key={item.date}
-              onClick={() => setSelectedDate(item.date)}
-              type="button"
-            >
-              <span className="block text-base font-black">{item.label}</span>
-              <span className="mt-1 block text-sm font-bold">{formatShortDate(item.date)}</span>
-            </button>
-          ))}
-        </div>
-
-        <article className="surface-card p-5">
-          <div className="eyebrow-pill">{selectedTab.label}的练习</div>
-          {assignment ? (
+          {displayedAssignment ? (
             <>
-              <h3 className="mt-4 text-2xl font-black leading-tight text-slate-950">{assignment.title}</h3>
-              <div className="mt-4 flex flex-wrap gap-2">
-                {assignment.items.flatMap((group) =>
+              <h3 className="text-2xl font-black leading-tight text-slate-950">{displayedAssignment.title}</h3>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {displayedAssignment.items.flatMap((group) =>
                   group.content.map((item) => (
                     <span className="choice-pill flex min-h-11 items-center px-4 text-lg font-black" key={`${group.label}-${item}`}>
                       {item}
@@ -83,27 +67,45 @@ export default function HomePage() {
                   )),
                 )}
               </div>
-              <p className="mt-4 text-base font-semibold leading-7 text-slate-500">{assignment.description}</p>
-              <p className="mt-2 text-sm font-bold text-slate-400">预计用时 {assignment.estimatedMinutes} 分钟</p>
+              <p className="mt-4 text-base font-semibold leading-7 text-slate-600">{displayedAssignment.description}</p>
+              <p className="mt-2 text-sm font-bold text-slate-600">预计用时 {displayedAssignment.estimatedMinutes} 分钟</p>
               <button
                 className="btn-primary mt-5 w-full px-5 py-4 text-xl font-extrabold transition active:scale-[0.98]"
-                onClick={() => navigate(`/daily/${assignment.date}`)}
+                onClick={() => navigate(`/daily/${displayedAssignment.date}`)}
                 type="button"
               >
-                开始练习
+                {isFallback ? "继续上次练习" : "开始今日练习"}
               </button>
             </>
           ) : (
             <>
-              <h3 className="mt-4 text-2xl font-black leading-tight text-slate-950">{selectedTab.label}暂未布置练习</h3>
+              <h3 className="text-2xl font-black leading-tight text-slate-950">{selectedTab.label}暂未布置练习</h3>
               <p className="mt-3 text-base font-semibold leading-7 text-slate-500">可以先复习昨天或前天的内容。</p>
-              <Link className="btn-secondary mt-5 flex items-center justify-center px-5 py-4 text-lg font-extrabold text-orange-700" to="/daily-history">
-                查看往期内容
-              </Link>
             </>
           )}
-        </article>
-      </section>
+        </section>
+
+        <section className="free-practice">
+          <div className="mb-3">
+            <p className="text-sm font-black uppercase tracking-[0.18em] text-orange-700">自由练习</p>
+            <h2 className="mt-1 text-2xl font-black text-slate-950">想练什么，就从这里开始</h2>
+          </div>
+          <div className="grid grid-cols-2 gap-3">
+            {modules.map((item) => (
+              <button
+                className={`module-card bg-gradient-to-br ${item.tone} transition active:scale-[0.98]`}
+                key={item.path}
+                onClick={() => navigate(item.path)}
+                type="button"
+              >
+                <span aria-hidden="true" className="text-sm font-black text-orange-700">{item.mark}</span>
+                <span className="mt-3 block text-xl font-black text-slate-950">{item.title}</span>
+                <span className="mt-2 block text-sm font-bold leading-5 text-slate-600">{item.desc}</span>
+              </button>
+            ))}
+          </div>
+        </section>
+      </div>
     </>
   );
 }

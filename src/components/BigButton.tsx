@@ -5,11 +5,12 @@ type BigButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   selected?: boolean;
 };
 
-export default function BigButton({ children, className = "", selected = false, ...props }: BigButtonProps) {
+export default function BigButton({ children, className = "", selected, ...props }: BigButtonProps) {
   const tone = selected ? "btn-primary" : "btn-secondary";
 
   return (
     <button
+      aria-pressed={selected}
       className={`px-5 py-4 text-xl font-extrabold transition active:scale-[0.98] ${tone} ${className}`}
       type="button"
       {...props}

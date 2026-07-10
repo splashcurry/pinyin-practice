@@ -26,7 +26,7 @@ export default function SinglePage() {
   return (
     <>
       <AppHeader title="单个拼音" />
-      <div className="mb-4 grid grid-cols-3 gap-2">
+      <div className="filter-selector mb-4 grid grid-cols-3 gap-2">
         {filters.map((item) => (
           <BigButton
             className="px-2 text-base"

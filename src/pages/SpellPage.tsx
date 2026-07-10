@@ -27,7 +27,7 @@ export default function SpellPage() {
       <AppHeader title="拼读练习" />
       <section className="mb-4">
         <h2 className="mb-3 text-xl font-black text-slate-950">选择声母</h2>
-        <div className="grid grid-cols-5 gap-2">
+        <div className="initial-selector grid grid-cols-5 gap-2">
           {initials.map((item) => {
             const disabled = !syllableBases.some((base) => base.initial === item);
             return (
@@ -55,7 +55,7 @@ export default function SpellPage() {
         renderCard={(base) => {
           const syllable = findSyllable(base);
           return (
-            <section className="practice-card p-6 text-center">
+            <section className="practice-card compact-practice-card p-6 text-center">
               <p className="eyebrow-pill text-base">{buildPlainPinyin(base.initial, base.final)}</p>
               {syllable ? (
                 <>
@@ -71,7 +71,7 @@ export default function SpellPage() {
           );
         }}
       />
-      <section className="mt-5">
+      <section className="practice-options mt-5">
         <h2 className="mb-3 text-xl font-black text-slate-950">选择声调</h2>
         <ToneSelector onChange={setTone} value={tone} />
       </section>

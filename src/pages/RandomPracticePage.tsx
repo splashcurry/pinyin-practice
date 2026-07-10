@@ -26,7 +26,7 @@ export default function RandomPracticePage() {
     <>
       <AppHeader title="随机练习" />
       {item ? (
-        <section className="practice-card p-6 text-center">
+        <section className="practice-card compact-practice-card p-6 text-center">
           <p className="eyebrow-pill text-base">读一读</p>
           <div className="pinyin-display my-5 text-[96px]">{item.pinyin}</div>
           {item.word && <div className="mb-5 text-5xl font-black text-slate-950">{item.word}</div>}
