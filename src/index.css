@@ -199,6 +199,19 @@ button {
     padding: 16px 24px;
   }
 
+  .page-practice-expanded .filter-selector > button {
+    min-height: 58px;
+  }
+
+  .page-practice-expanded .pinyin-card {
+    min-height: 300px;
+  }
+
+  .page-practice-expanded .compact-practice-card {
+    min-height: 280px;
+    padding: 20px 24px;
+  }
+
   .pinyin-card-copy .pinyin-display {
     margin: 10px 0 6px;
     font-size: 72px;
@@ -247,6 +260,10 @@ button {
     border-radius: 12px;
   }
 
+  .page-practice-expanded .practice-index > button {
+    min-height: 54px;
+  }
+
   .filter-selector {
     margin-bottom: 10px;
   }
@@ -284,5 +301,9 @@ button {
     min-height: 44px;
     padding: 8px 12px;
     font-size: 16px;
+  }
+
+  .page-practice-expanded .tone-selector > button {
+    min-height: 58px;
   }
 }

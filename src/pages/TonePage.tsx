@@ -13,7 +13,7 @@ export default function TonePage() {
   const [tone, setTone] = useState<Tone>(1);
 
   return (
-    <>
+    <div className="page-practice-expanded">
       <AppHeader title="四声练习" />
       <CardPractice
         getKey={(item) => item.id}
@@ -33,6 +33,6 @@ export default function TonePage() {
         <h2 className="mb-3 text-xl font-black text-slate-950">选择声调</h2>
         <ToneSelector onChange={setTone} value={tone} />
       </section>
-    </>
+    </div>
   );
 }

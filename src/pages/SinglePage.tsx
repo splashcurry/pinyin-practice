@@ -24,7 +24,7 @@ export default function SinglePage() {
   }, [filter]);
 
   return (
-    <>
+    <div className="page-practice-expanded">
       <AppHeader title="单个拼音" />
       <div className="filter-selector mb-4 grid grid-cols-3 gap-2">
         {filters.map((item) => (
@@ -46,6 +46,6 @@ export default function SinglePage() {
         onIndexChange={setIndex}
         renderCard={(item) => <PinyinCard item={item} />}
       />
-    </>
+    </div>
   );
 }
