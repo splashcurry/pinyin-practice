@@ -7,45 +7,14 @@ import { singleItems } from "../data/singleItems";
 import type { PinyinType } from "../types/pinyin";
 
 type Filter = Extract<PinyinType, "initial" | "final" | "whole">;
-
-const filters: { value: Filter; label: string }[] = [
-  { value: "initial", label: "声母" },
-  { value: "final", label: "韵母" },
-  { value: "whole", label: "整体认读" },
-];
+const filters: { value: Filter; label: string }[] = [{ value: "initial", label: "声母" }, { value: "final", label: "韵母" }, { value: "whole", label: "整体认读" }];
 
 export default function SinglePage() {
-  const [filter, setFilter] = useState<Filter>("initial");
-  const [index, setIndex] = useState(0);
+  const [filter, setFilter] = useState<Filter>("initial"); const [index, setIndex] = useState(0);
   const items = useMemo(() => singleItems.filter((item) => item.type === filter), [filter]);
-
-  useEffect(() => {
-    setIndex(0);
-  }, [filter]);
-
-  return (
-    <div className="page-practice-expanded">
-      <AppHeader title="单个拼音" />
-      <div className="filter-selector mb-4 grid grid-cols-3 gap-2">
-        {filters.map((item) => (
-          <BigButton
-            className="px-2 text-base"
-            key={item.value}
-            onClick={() => setFilter(item.value)}
-            selected={filter === item.value}
-          >
-            {item.label}
-          </BigButton>
-        ))}
-      </div>
-      <CardPractice
-        getKey={(item) => item.id}
-        getLabel={(item) => item.symbol}
-        index={index}
-        items={items}
-        onIndexChange={setIndex}
-        renderCard={(item) => <PinyinCard item={item} />}
-      />
-    </div>
-  );
+  useEffect(() => { setIndex(0); }, [filter]);
+  return <div className="practice-page page-practice-expanded"><AppHeader title="单个拼音" /><p className="practice-page__hint">选一个类别，听一听，再跟着读。</p>
+    <div aria-label="选择拼音类别" className="filter-selector practice-selector mb-5 grid grid-cols-3 gap-2">{filters.map((item) => <BigButton className="px-2 text-base" key={item.value} onClick={() => setFilter(item.value)} selected={filter === item.value}>{item.label}</BigButton>)}</div>
+    <CardPractice getKey={(item) => item.id} getLabel={(item) => item.symbol} index={index} items={items} onIndexChange={setIndex} renderCard={(item) => <PinyinCard item={item} />} />
+  </div>;
 }
