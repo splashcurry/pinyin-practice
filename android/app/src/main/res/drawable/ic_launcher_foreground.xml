@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<bitmap xmlns:android="http://schemas.android.com/apk/res/android"
-    android:antialias="true"
-    android:gravity="fill"
-    android:src="@drawable/ic_launcher_foreground_image" />
+<!-- Keep the artwork in the adaptive icon safe area so launcher masks do not crop it. -->
+<inset xmlns:android="http://schemas.android.com/apk/res/android"
+    android:inset="18dp">
+    <bitmap
+        android:antialias="true"
+        android:gravity="fill"
+        android:src="@drawable/ic_launcher_foreground_image" />
+</inset>
