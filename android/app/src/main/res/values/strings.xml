@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">拼音练习</string>
+    <string name="loading_failed_title">页面加载失败</string>
+    <string name="loading_failed_message">请检查网络连接后重新加载。</string>
+    <string name="retry">重新加载</string>
+    <string name="external_link_unavailable">无法打开此链接</string>
+</resources>
